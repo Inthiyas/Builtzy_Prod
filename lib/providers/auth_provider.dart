@@ -10,7 +10,12 @@ class AuthNotifier extends AsyncNotifier<User?> {
   @override
   Future<User?> build() async {
     final repo = ref.read(authRepositoryProvider);
-    return await repo.restoreSession();
+    final token = await repo.getToken();
+    
+    if (token == null) return null;
+    
+    final user = await repo.getCurrentUser(token);
+    return user;
   }
 
   Future<bool> login(String username, String password) async {
@@ -18,6 +23,10 @@ class AuthNotifier extends AsyncNotifier<User?> {
     try {
       final repo = ref.read(authRepositoryProvider);
       final user = await repo.login(username, password);
+      
+      if (user != null && repo.token != null) {
+        await repo.saveToken(repo.token!);
+      }
       
       state = AsyncValue.data(user);
       return user != null;
