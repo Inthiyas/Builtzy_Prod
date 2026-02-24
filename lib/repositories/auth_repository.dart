@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../models/models.dart';
 
 class AuthRepository {
-  final String baseUrl = dotenv.env['API_BASE_URL'] ?? 'http://localhost:3000';
+  final String baseUrl = dotenv.env['API_BASE_URL'] ?? 'http://35.232.29.210';
   final _storage = const FlutterSecureStorage();
   
   String? _token;

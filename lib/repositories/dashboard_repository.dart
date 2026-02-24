@@ -36,7 +36,7 @@ class DashboardMetrics {
 
 class DashboardRepository {
   final AuthRepository _authRepository;
-  final String baseUrl = dotenv.env['API_BASE_URL'] ?? 'http://localhost:3000';
+  final String baseUrl = dotenv.env['API_BASE_URL'] ?? 'http://35.232.29.210';
 
   DashboardRepository(this._authRepository);
 
