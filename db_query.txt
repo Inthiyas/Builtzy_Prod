@@ -1,0 +1,112 @@
+-- USERS TABLE
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'subcontractor')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- SUBCONTRACTORS TABLE
+CREATE TABLE subcontractors (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+    company_name VARCHAR(100) NOT NULL,
+    contact_person VARCHAR(100),
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- MANPOWER TABLE
+CREATE TABLE manpower (
+    id SERIAL PRIMARY KEY,
+    subcontractor_id INTEGER REFERENCES subcontractors(id) ON DELETE CASCADE,
+    name VARCHAR(100) NOT NULL,
+    approval_status VARCHAR(20) DEFAULT 'pending'
+        CHECK (approval_status IN ('pending', 'approved', 'rejected')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- EQUIPMENT TABLE
+CREATE TABLE equipment (
+    id SERIAL PRIMARY KEY,
+    subcontractor_id INTEGER REFERENCES subcontractors(id) ON DELETE CASCADE,
+    name VARCHAR(100) NOT NULL,
+    approval_status VARCHAR(20) DEFAULT 'pending'
+        CHECK (approval_status IN ('pending', 'approved', 'rejected')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- ATTENDANCE TABLE
+CREATE TABLE attendance (
+    id SERIAL PRIMARY KEY,
+    manpower_id INTEGER REFERENCES manpower(id) ON DELETE CASCADE,
+    date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL
+        CHECK (status IN ('present', 'absent', 'not_marked')),
+    UNIQUE(manpower_id, date)
+);
+
+
+-- EQUIPMENT STATUS TABLE
+CREATE TABLE equipment_status (
+    id SERIAL PRIMARY KEY,
+    equipment_id INTEGER REFERENCES equipment(id) ON DELETE CASCADE,
+    date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL
+        CHECK (status IN ('deployed', 'non_deployed', 'under_repair')),
+    UNIQUE(equipment_id, date)
+);
+
+
+
+
+SELECT table_name, table_schema
+FROM information_schema.tables
+WHERE table_schema NOT IN ('pg_catalog', 'information_schema')
+  AND table_type = 'BASE TABLE';
+
+
+INSERT INTO users (username, password, role)
+VALUES 
+('admin', 'admin', 'admin'),
+('sub1', 'sub1', 'subcontractor'),
+('sub2', 'sub2', 'subcontractor');
+
+
+INSERT INTO subcontractors (user_id, company_name, contact_person, phone)
+VALUES
+(2, 'ABC Constructions', 'Ravi Kumar', '9876543210'),
+(3, 'XYZ Builders', 'Suresh Babu', '9123456780');
+
+
+INSERT INTO manpower (subcontractor_id, name, approval_status)
+VALUES
+(1, 'Worker A', 'pending'),
+(1, 'Worker B', 'approved'),
+(2, 'Worker C', 'approved');
+
+
+
+INSERT INTO equipment (subcontractor_id, name, approval_status)
+VALUES
+(1, 'Excavator', 'approved'),
+(1, 'Crane', 'pending'),
+(2, 'Bulldozer', 'approved');
+
+
+INSERT INTO attendance (manpower_id, date, status)
+VALUES
+(2, CURRENT_DATE, 'present'),
+(3, CURRENT_DATE, 'absent');
+
+
+
+INSERT INTO equipment_status (equipment_id, date, status)
+VALUES
+(1, CURRENT_DATE, 'deployed'),
+(3, CURRENT_DATE, 'under_repair');

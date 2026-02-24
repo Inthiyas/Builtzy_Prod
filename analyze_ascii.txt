@@ -1,0 +1,5 @@
+ERROR|SYNTACTIC_ERROR|EXPECTED_TOKEN|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\screens\\admin\\admin_equipment_screen.dart|238|5|1|Expected to find ']'.
+ERROR|SYNTACTIC_ERROR|EXPECTED_TOKEN|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\screens\\admin\\admin_equipment_screen.dart|238|6|1|Expected to find ')'.
+ERROR|SYNTACTIC_ERROR|EXPECTED_TOKEN|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\screens\\admin\\admin_manpower_screen.dart|230|5|1|Expected to find ']'.
+ERROR|SYNTACTIC_ERROR|EXPECTED_TOKEN|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\screens\\admin\\admin_manpower_screen.dart|230|6|1|Expected to find ')'.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\widgets\\filter_dropdown.dart|20|7|5|'value' is deprecated and shouldn't be used. Use initialValue instead. This will set the initial value for the form field. This feature was deprecated after v3.33.0-1.0.pre.

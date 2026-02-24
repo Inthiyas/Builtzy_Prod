@@ -1,0 +1,2 @@
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\screens\\login_screen.dart|93|53|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\Users\\sethu\\Downloads\\buildzy\\lib\\ui\\screens\\login_screen.dart|108|59|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
