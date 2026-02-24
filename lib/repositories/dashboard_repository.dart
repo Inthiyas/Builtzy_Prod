@@ -44,7 +44,7 @@ class DashboardRepository {
     final token = _authRepository.token;
     if (token == null) throw Exception('No auth token');
 
-    final endpoint = '/dashboard/metrics';
+    final endpoint = '/api/dashboard/metrics';
     
     final response = await http.get(
       Uri.parse('$baseUrl$endpoint'),
