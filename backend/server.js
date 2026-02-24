@@ -17,10 +17,10 @@ const userRoutes = require('./src/routes/userRoutes');
 const subcontractorRoutes = require('./src/routes/subcontractorRoutes');
 
 // Main Routes
-app.use('/auth', authRoutes);
-app.use('/manpower', manpowerRoutes);
-app.use('/equipment', equipmentRoutes);
-app.use('/dashboard', dashboardRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/manpower', manpowerRoutes);
+app.use('/api/equipment', equipmentRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.use('/api/users', userRoutes);
 app.use('/api/subcontractors', subcontractorRoutes);
