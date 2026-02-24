@@ -29,7 +29,7 @@ class ManpowerRepository {
       if (filter.status2 != 'all') queryParams['attendance_status'] = filter.status2;
     }
 
-    final uri = Uri.parse('$baseUrl/manpower').replace(
+    final uri = Uri.parse('$baseUrl/api/manpower').replace(
       queryParameters: queryParams.isNotEmpty ? queryParams : null,
     );
     final response = await http.get(uri, headers: _headers);

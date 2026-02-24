@@ -29,7 +29,7 @@ class EquipmentRepository {
       if (filter.status2 != 'all') queryParams['deployment_status'] = filter.status2;
     }
 
-    final uri = Uri.parse('$baseUrl/equipment').replace(
+    final uri = Uri.parse('$baseUrl/api/equipment').replace(
       queryParameters: queryParams.isNotEmpty ? queryParams : null,
     );
     final response = await http.get(uri, headers: _headers);
